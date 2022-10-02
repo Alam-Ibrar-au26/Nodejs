@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const user = new mongoose.Schema({
-  tasks: String,
-  date: Number,
+const task = new mongoose.Schema({
+  tasks: {type: String},
+  date: {type: Number},
 });
 
-const userDetails = new mongoose.model("user", user);
+const taskDetails = mongoose.model("tasks", task);
 
-module.exports = userDetails;
+module.exports = taskDetails;
