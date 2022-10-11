@@ -2,19 +2,25 @@ const { response } = require("express");
 const taskDetails = require("../modals/taskSchema");
 
 class Task {
-  create = async (req, res) => {
+  createTask = async (req, res) => {
     try {
-      const { task } = req.body;
+      const { task, userId } = req.body;
       if (!task) {
         throw {
           message: "Please enter a task",
         };
       }
-      const response = await taskDetails.create({ task });
+      if (!userId) {
+        throw {
+          message: "Please enter a User ID",
+        };
+      }
+
+      const response = await taskDetails.create({ task, userId });
       res.send({
         status: true,
         response: response,
-        message: "Successfully added a task",
+        message: "Successfully added task",
       });
     } catch (error) {
       res.send({
@@ -25,7 +31,7 @@ class Task {
   };
 
   getTasks = async (req, res) => {
-    const response = await taskDetails.find();
+    const response = await taskDetails.find().populate();
     res.send(response);
   };
 
