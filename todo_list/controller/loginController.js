@@ -44,7 +44,7 @@ class Login {
   };
 
   getUsers = async (req, res) => {
-    const response = await userDetails.find().populate();
+    const response = await userDetails.find({});
     res.send(response);
   };
 
@@ -72,8 +72,8 @@ class Login {
   };
 
   deleteUser = async (req, res) => {
-    const id = req.body.id;
-    const response = await userDetails.deleteMany({ _id: id });
+    const userId = req.body.userId;
+    const response = await userDetails.deleteMany({ userId: userId });
     res.send(response);
   };
 }
