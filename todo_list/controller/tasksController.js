@@ -4,7 +4,9 @@ const taskDetails = require("../modals/taskSchema");
 class Task {
   createTask = async (req, res) => {
     try {
-      const { task, userId, files } = req.body;
+      const { task, userId } = req.body;
+      const file = req.file
+      console.log("file", file)
       if (!task) {
         throw {
           message: "Please enter a task",
@@ -13,11 +15,6 @@ class Task {
       if (!userId) {
         throw {
           message: "Please enter a User ID",
-        };
-      }
-      if (!files) {
-        throw {
-          message: "Please upload a file",
         };
       }
 
@@ -42,7 +39,9 @@ class Task {
 
   getUserTasks = async (req, res) => {
     const userId = req.query.userId;
-    const response = await taskDetails.find({userId: userId}).populate("userId");
+    const response = await taskDetails
+      .find({ userId: userId })
+      .populate("userId");
     res.send(response);
   };
 

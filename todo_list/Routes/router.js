@@ -2,7 +2,6 @@ const router = require("express").Router();
 const Task = require("../controller/tasksController");
 const Register = require("../controller/registerController.js");
 const Login = require("../controller/loginController");
-const upload = require("../middleware/fileUploader");
 
 // #Task
 router.post("/create-task", Task.createTask);

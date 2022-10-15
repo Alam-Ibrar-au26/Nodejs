@@ -16,9 +16,13 @@ const task = new mongoose.Schema({
   task: { type: String },
   date: { type: Date, default: Date.now() },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
-  files: { type: String },
+  files: {
+    type: String,
+    required: "File is required",
+    file: [upload, "Please upload a valid file"],
+  },
 });
 
-const taskDetails = mongoose.model("todo", task, upload);
+const taskDetails = mongoose.model("todo", task);
 
 module.exports = taskDetails;
