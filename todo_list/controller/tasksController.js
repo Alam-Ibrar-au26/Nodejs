@@ -4,9 +4,9 @@ const taskDetails = require("../modals/taskSchema");
 class Task {
   createTask = async (req, res) => {
     try {
-      const { task, userId } = req.body;
-      const file = req.file
-      console.log("file", file)
+      const { task, userId, files } = req.body;
+      const file = req.file;
+      console.log("File: ", file);
       if (!task) {
         throw {
           message: "Please enter a task",

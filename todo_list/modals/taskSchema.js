@@ -18,7 +18,6 @@ const task = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
   files: {
     type: String,
-    required: "File is required",
     file: [upload, "Please upload a valid file"],
   },
 });
