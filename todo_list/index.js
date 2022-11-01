@@ -1,4 +1,5 @@
 const express = require("express");
+var cors = require('cors');
 const app = express();
 const port = 3000;
 const multer = require("multer");
@@ -12,6 +13,8 @@ const upload = multer({
     },
   }),
 });
+
+app.use(cors())
 
 const DBConnection = require("./db/db_connection");
 const taskRouter = require("./Routes/router");
